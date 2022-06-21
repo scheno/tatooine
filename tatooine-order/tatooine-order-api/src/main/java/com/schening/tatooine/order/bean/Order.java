@@ -1,6 +1,7 @@
 package com.schening.tatooine.order.bean;
 
 import java.util.Date;
+import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 /**
@@ -13,6 +14,7 @@ public class Order {
 
     private Long id;
 
+    @NotNull(message = "订单名称不允许为空")
     private String name;
 
     private Date date;
