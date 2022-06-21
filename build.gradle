@@ -74,3 +74,42 @@ subprojects {
 }
 
 jar.enabled = false
+
+apply plugin: "jacoco"
+jacoco {
+    toolVersion = "0.8.4"
+    reportsDir = file("$buildDir/customJacocoReportDir")
+}
+apply plugin: "application"
+apply plugin: "jacoco"
+mainClassName = "org.gradle.MyMain"
+jacoco {
+    applyTo run
+}
+task applicationCodeCoverageReport(type:JacocoReport){
+    executionData run
+    sourceSets sourceSets.main
+}
+jacocoTestReport {
+    reports {
+        html.enabled true
+        csv.enabled false
+        xml.enabled true
+        xml.destination file("$buildDir/jacocoXml.xml")
+        html.destination file("$buildDir/jacocoHtml")
+    }
+    afterEvaluate {
+        getClassDirectories().setFrom(
+                classDirectories.files.collect {
+                    fileTree(dir: it,
+                            exclude: ['需要排除的路径, it路径是classes'])
+                }
+        )
+    }
+}
+test {
+    jacoco {
+        destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+        classDumpDir = file("$buildDir/jacoco/classpathdumps")
+    }
+}

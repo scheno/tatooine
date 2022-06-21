@@ -83,7 +83,7 @@ public class LogAspect {
         } catch (Exception exception) {
             logger.error("==前置通知异常==");
             logger.error("异常信息:{}", exception.getMessage());
-            logger.error("异常堆栈:{}", exception.getStackTrace());
+//            logger.error("异常堆栈:{}", exception.getStackTrace());
         }
     }
 

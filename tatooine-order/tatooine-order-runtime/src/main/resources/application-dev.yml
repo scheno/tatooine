@@ -1,38 +1,38 @@
-spring:
-  cloud:
-    stream:
-      bindings:
-        sms-out-0:
-          destination: sms-topic
-          content-type: application/json
-        sms-in-0:
-          destination: sms-topic
-          content-type: application/json
-          group: sms-group
-        email-out-0:
-          destination: email-topic
-          content-type: application/json
-        email-in-0:
-          destination: email-topic
-          content-type: application/json
-          group: email-group
-      rocketmq:
-        bindings:
-          email-out-0: #消息通道
-            producer:
-              group: email-group
-              sync: true
-        binder:
-          name-server: ${NAME_SERVER:localhost:9876}
-      function:
-        definition: sms;email
-  datasource:
-    username: ${MYSQL_USERNAME:root}
-    password: ${MYSQL_PASSWORD:password}
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/tatooine?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  redis:
-    host: ${REDIS_HOST:localhost}
-    port: ${REDIS_PORT:6379}
-    password: ${REDIS_PASSWORD:password}
-    timeout: 3000
+#spring:
+#  cloud:
+#    stream:
+#      bindings:
+#        sms-out-0:
+#          destination: sms-topic
+#          content-type: application/json
+#        sms-in-0:
+#          destination: sms-topic
+#          content-type: application/json
+#          group: sms-group
+#        email-out-0:
+#          destination: email-topic
+#          content-type: application/json
+#        email-in-0:
+#          destination: email-topic
+#          content-type: application/json
+#          group: email-group
+#      rocketmq:
+#        bindings:
+#          email-out-0: #消息通道
+#            producer:
+#              group: email-group
+#              sync: true
+#        binder:
+#          name-server: ${NAME_SERVER:localhost:9876}
+#      function:
+#        definition: sms;email
+#  datasource:
+#    username: ${MYSQL_USERNAME:root}
+#    password: ${MYSQL_PASSWORD:password}
+#    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/tatooine?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#  redis:
+#    host: ${REDIS_HOST:localhost}
+#    port: ${REDIS_PORT:6379}
+#    password: ${REDIS_PASSWORD:password}
+#    timeout: 3000

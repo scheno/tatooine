@@ -1,5 +1,6 @@
 package com.schening.tatooine.order.web;
 
+import com.schening.tatooine.order.bean.Order;
 import com.schening.tatooine.order.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,8 +19,22 @@ public class OrderControllerImpl implements OrderController {
     private final OrderService orderService;
 
     @Override
-    public String createOrder() {
-        return orderService.createOrder();
+    public long createOrder(Order order) {
+        return orderService.createOrder(order);
     }
 
+    @Override
+    public Boolean deleteOrder(long id) {
+        return orderService.deleteOrder(id);
+    }
+
+    @Override
+    public Boolean updateOrder(Order order) {
+        return orderService.updateOrder(order);
+    }
+
+    @Override
+    public String queryOrder(long id) {
+        return orderService.queryOrder(id);
+    }
 }
